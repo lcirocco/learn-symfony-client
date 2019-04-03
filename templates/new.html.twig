@@ -1,0 +1,11 @@
+{# templates/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+{% block body %}
+    <form method="POST" action="{{ path('login') }}">
+        <input type="text" name="username" placeholder="your username">
+        <input type="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+{% endblock %}

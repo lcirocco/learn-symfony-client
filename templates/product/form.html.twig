@@ -1,0 +1,18 @@
+{# templates/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ product is defined ?  'Edit product' : 'New product' }}{% endblock %}
+
+{% block body %}
+    <form method="POST" action="{{ product is defined ? path('edit_product', {id: product.id}) : path('create_product') }}">
+        <input type="text" name="name" placeholder="name" value="{{ product is defined ? product.name }}">
+        <input type="number" name="price" placeholder="price" value="{{ product is defined ? product.price }}">
+        <select name="category">
+            {% for category in categories %}
+                <option value="{{ category.id }}" {% if product is defined and category.id == product.category.id %}selected{% endif %}>{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="description" placeholder="description" value="{{ product is defined ? product.description }}">
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

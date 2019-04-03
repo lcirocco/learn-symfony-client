@@ -1,0 +1,48 @@
+{# templates/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Products{% endblock %}
+
+{% block body %}
+    <table action="{{ path('products', {products: product}) }}">
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                Price
+            </td>
+            <td>
+                Category
+            </td>
+            <td>
+                Description
+            </td>
+            <td>
+                <a href="{{ path("create_product") }}">{{ "New Product" }}</a>
+            </td>
+        </tr>
+        {% for product in product %}
+        <tr>
+            <td>
+                {{ product.name }}
+            </td>
+            <td>
+                {{ product.price }}
+            </td>
+            <td>
+                {{ product.category.name }}
+            </td>
+            <td>
+                {{ product.description }}
+            </td>
+            <td>
+                <a href="{{ path("edit_product",  {id: product.id}) }}">{{ "Edit" }}</a>
+            </td>
+            <td>
+                <a href="{{ path("delete_product",  {id: product.id}) }}">{{ "Delete" }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
